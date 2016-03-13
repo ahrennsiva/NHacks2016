@@ -146,7 +146,7 @@ if(delayCheck == true)
 			}
 		}
 	}
-	attemptTranslation(fingerPositions, fingerCount, handGrabStrength);
+	tryTranslate(fingerPositions, fingerCount, handGrabStrength);
 }
 }
 
@@ -161,7 +161,7 @@ function convertFingerPositionsIntoXYZ(positions, hand, finger){
 		};
 }
 
-function attemptTranslation(fingerPositions, fingersExtended, handGrabStrength){
+function tryTranslate(fingerPositions, fingersExtended, handGrabStrength){
 	var translationResult = "No Sign Detected";
 	var fingerData = fingerPositions;
 

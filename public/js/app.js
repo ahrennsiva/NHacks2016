@@ -1,4 +1,4 @@
-var handTracking = 0;
+var hTracking = 0;
 var handNegative = 0;
 var dataEle = document.getElementById("data");
 var statusEle = document.getElementById("status");
@@ -28,8 +28,8 @@ Leap.loop(controllerOptions, function(frame){
     }
 
 }).on("handFound", function(frame){
-    handTracking++;
-    console.log(handTracking);
+    hTracking++;
+    console.log(hTracking);
     paused = false;
     statusEle.innerHTML = ""; 
 
@@ -67,10 +67,6 @@ Leap.loop(controllerOptions, function(frame){
       }
     },
     checkWebGL: true
-}).use('playback', {
-    recording: 'js/demo.json.lz',
-    requiredProtocolVersion: 6,
-    pauseOnHand: true
 });
 
 
