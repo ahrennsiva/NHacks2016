@@ -38,7 +38,7 @@ Leap.loop(controllerOptions, function(frame){
     console.log(handNegative);
     paused = true;
 
-    displayToTranslationBox("No hands shown!");
+    displayToTranslationBox("Hands Not Detected");
 
     statusEle.innerHTML = "";
 

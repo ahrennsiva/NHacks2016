@@ -42,10 +42,15 @@ function playAudio(fileName){
 		var audio = new Audio(fileName);
    		audio.play();
    		delayCheck2 = false;
-	}
-	setTimeout(function(){
+   		delayCheck = false;
+   		setTimeout(function(){
 		delayCheck2 = true;
 	},2000);
+   		setTimeout(function(){
+		delayCheck = true;
+	},1500);
+	}
+	
 }
 	
 
@@ -53,20 +58,24 @@ function displayToTranslationBox(translation){
     document.getElementById('translation-result').innerHTML = translation;
     if (!changeLanguage){
     if (translation == "Yes"){
-    	//playAudio("public/20837.mp3");
-    	openWin("http://s1download-universal-soundbank.com/mp3/sounds/1711.mp3");//
+    	playAudio("public/yes.mp3");
+    	//openWin("http://s1download-universal-soundbank.com/mp3/sounds/1711.mp3");//
     }
     if (translation == "Good"){
-    	openWin("http://s1download-universal-soundbank.com/mp3/sounds/1710.mp3");//
+    	playAudio("public/good.mp3");
+    	//openWin("http://s1download-universal-soundbank.com/mp3/sounds/1710.mp3");//
     }
     if (translation == "Okay"){
-    	openWin("http://s1download-universal-soundbank.com/mp3/sounds/1723.mp3");//
+    	playAudio("public/ok.mp3");
+    	//openWin("http://s1download-universal-soundbank.com/mp3/sounds/1723.mp3");//
     }
-    if (translation == "No"){
-    	openWin("http://s1download-universal-soundbank.com/mp3/sounds/1715.mp3");//
+    if (translation == "No, Sorry"){
+    	playAudio("public/no.mp3");
+    	//openWin("http://s1download-universal-soundbank.com/mp3/sounds/1715.mp3");//
     }
-    if (translation == "One"){
-    	openWin("http://s1download-universal-soundbank.com/mp3/sounds/1721.mp3");
+    if (translation == "Correct"){
+    	playAudio("public/correct.mp3");
+    	//openWin("http://s1download-universal-soundbank.com/mp3/sounds/1721.mp3");
     }/*
     if (translation == "Two"){
     	openWin("http://howjsay.com/pronounciation-of-two");
@@ -75,19 +84,24 @@ function displayToTranslationBox(translation){
 
 	else{
 		if (translation == "Yes"){
-    	openWin("http://s1download-universal-soundbank.com/mp3/sounds/22326.mp3");//
+			playAudio("public/oui.mp3");
+    	//openWin("http://s1download-universal-soundbank.com/mp3/sounds/22326.mp3");//
     }
     if (translation == "Good"){
-    	openWin("http://s1download-universal-soundbank.com/mp3/sounds/22138.mp3");//
+    	playAudio("public/marvel.mp3");
+    	//openWin("http://s1download-universal-soundbank.com/mp3/sounds/22138.mp3");//
     }
     if (translation == "Okay"){
-    	openWin("http://s1download-universal-soundbank.com/mp3/sounds/11890.mp3");//
+    	playAudio("public/bien.mp3");
+    	//openWin("http://s1download-universal-soundbank.com/mp3/sounds/11890.mp3");//
     }
-    if (translation == "No"){
-    	openWin("http://s1download-universal-soundbank.com/mp3/sounds/11891.mp3");//
+    if (translation == "No, Sorry"){
+    	playAudio("public/pasbien.mp3");
+    	//openWin("http://s1download-universal-soundbank.com/mp3/sounds/11891.mp3");//
     }
-    if (translation == "One"){
-    	openWin("http://s1download-universal-soundbank.com/mp3/sounds/1721.mp3");
+    if (translation == "Correct"){
+    	playAudio("public/correct.mp3");
+    	//openWin("http://s1download-universal-soundbank.com/mp3/sounds/1721.mp3");
     }/*
     if (translation == "Two"){
     	openWin("http://howjsay.com/pronounciation-of-two");
@@ -148,7 +162,7 @@ function convertFingerPositionsIntoXYZ(positions, hand, finger){
 }
 
 function attemptTranslation(fingerPositions, fingersExtended, handGrabStrength){
-	var translationResult = "Translation Currently Unavailable";
+	var translationResult = "No Sign Detected";
 	var fingerData = fingerPositions;
 
 	var extendedFingers = fingersExtended;
@@ -177,21 +191,15 @@ function attemptTranslation(fingerPositions, fingersExtended, handGrabStrength){
 	var yData = [];
 	var zData = [];
 
-	// Loops through the sign array JSON
 	for(var s = 0; s < signArray.signs.length; s++){
 		signObject = signArray.signs[s];
 
-		// Load current sign information into variables
 		signName = signObject.name;
 		signExtendedFingers = signObject.extendedFingers;
 		signPosition = signObject.position;
 		signTranslationWord = signObject.translation;
-
-		signLessThan = signObject.lessThan;
-		signGreaterThan = signObject.greaterThan;
 		
-		// Checks
-		if(signExtendedFingers !== null && signPosition !== null && signLessThan !== null && signGreaterThan !== null){
+		if(signExtendedFingers !== null && signPosition !== null){
 			requiredFingers = signPosition.fingers.split(',');
 			for(var i = 0; i < fingerPositions.length; i++){
 				for(var f = 0; f < requiredFingers.length; f++){
@@ -205,14 +213,7 @@ function attemptTranslation(fingerPositions, fingersExtended, handGrabStrength){
 
 			var dist = calculateDistanceBetweenTwoPoints3D(xData, yData, zData);
 			console.log(dist);
-			if(dist <= signLessThan && dist >= signGreaterThan){
-				console.log("Less: " + dist + " <= " + signLessThan);
-				console.log("Greater: " + dist + " >= " + signGreaterThan);
-				translationResult = signTranslationWord;
-			}
 		}
-		
-		// Basic number translation
 		
 		if(signExtendedFingers != null && signPosition === null){
 			if(parseInt(signExtendedFingers) === extendedFingers && grabStrength === 0.0){
@@ -221,7 +222,6 @@ function attemptTranslation(fingerPositions, fingersExtended, handGrabStrength){
 			}
 		}
 
-		// Currently only supports two required fingers
 		if (signExtendedFingers === null && signPosition != null)
 		{				
 			requiredFingers = signPosition.fingers.split(',');
@@ -256,7 +256,6 @@ function attemptTranslation(fingerPositions, fingersExtended, handGrabStrength){
 		}
 
 		// Checks if the sign is making the sign "Good". 
-		// In the future I would like to move this into the above statements, to be handled there.
 		if(signExtendedFingers === 1 && signPosition != null){
 			requiredFingers = signPosition.fingers.split(',');
 

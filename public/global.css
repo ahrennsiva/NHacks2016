@@ -4,7 +4,7 @@
     margin: 0;
 }
 body{
-    background: #9C27B0;
+    background: #d4d8d4;
     font-size: 10px;
     font-family: 'Roboto Slab', sans-serif;
 }
@@ -14,9 +14,10 @@ h2{
     margin: 0 0 4px 0;
     font-size: 16pt;
     font-family: 'Roboto Slab', sans-serif;
+    color: #433e90;
 }
 p{
-    color: #FFEB3B;
+    color:  #433e90;
     font-size: 14pt;
     font-family: 'Roboto Slab', sans-serif;
 
@@ -26,10 +27,10 @@ p{
 
 #translation{
     position: absolute;
-    right: 15px;
-    width: 350px;
-    bottom:15px;
-    background: #9C27B0;
+    left: 15px;
+    width: 300px;
+    bottom:128px;
+    background: #d2d2d2;
     color: #FFEB3B;
     padding: 15px;
     box-shadow: 0 0 10px #999;
@@ -37,7 +38,7 @@ p{
     font-family: 'Roboto Slab', sans-serif;
 }
 #translation > p{
-    color:#ffffff;
+    color: #433e90;
     font-family: 'Roboto Slab', sans-serif;
 }
 
@@ -45,17 +46,17 @@ p{
     position: absolute;
     left:15px;
     bottom: 15px;
-    background: #9C27B0;
+    background: #d2d2d2;
     width: 300px;
     padding: 15px;
-    color: #FFEB3B;
+    color: #433e90;
     box-shadow: 0 0 10px #999;
     z-index: 99;
     font-family: 'Roboto Slab', sans-serif;
 }
 
 #options > p{
-    color:#FFEB3B;
+    color:#433e90;
     font-size: 12pt;
     font-family: 'Roboto Slab', sans-serif;
 }
@@ -66,6 +67,7 @@ input[type='checkbox']{
     -webkit-transform: scale(1.5); /* Safari and Chrome */
     -o-transform: scale(1.5); /* Opera */
     padding: 10px;
+    color: #433e90;
 }
 
 button{
@@ -74,7 +76,8 @@ button{
     line-height: 1.5;
     margin-top: 4px;
     font-family: 'Roboto Slab', sans-serif;
+      color: #433e90;
 }
 
-span,p{ font-size: 12pt; color:#FFEB3B; margin-top: 15px; font-family: 'Roboto Slab', sans-serif; }
+span,p{ font-size: 12pt; color: #433e90; margin-top: 15px; font-family: 'Roboto Slab', sans-serif; }
 span > p{ display: inline-block; margin-top-top: 15px; font-family: 'Roboto Slab', sans-serif;}
