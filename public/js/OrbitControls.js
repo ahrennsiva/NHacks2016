@@ -1,3 +1,5 @@
+//used orbit controls for 3d hand display from open source project
+//details specfiied below
 /**
  * @author qiao / https://github.com/qiao
  * @author mrdoob / http://mrdoob.com
